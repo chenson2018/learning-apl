@@ -1,8 +1,7 @@
-⍝ See https://en.wikipedia.org/wiki/Determination_of_the_day_of_the_week#Disparate_variation
-
 ⍝ This code generates a standard calendar (listed Sunday through Saturday with six rows)
 ⍝ Zeroes are placed where a calendar would have blank spots
 ⍝ After this, I add together a stack of dates and find what the maximum sum/index
+⍝ Also see: https://en.wikipedia.org/wiki/Determination_of_the_day_of_the_week#Disparate_variation
 
 c←6 7                                                                                   ⍝ dimensions of a calendar
 d←(10⍴5⍴31 30),(31 28)                                                                  ⍝ days/months starting with March 
