@@ -11,7 +11,7 @@ r←{m (z ⍵) ((1⊃⍵)⌷d)}                                                 
 y←{r¨((11 12),⍳10),¨⍵}                                                                  ⍝ create an entire year
 
 ⍝ Example:
-⎕←t←y 1799    ⍝ 1799 monthly calendar
-⎕←s←+/t       ⍝ add together the stack of dates
-⎕←p←⌈/,⊃+/t   ⍝ this is the max value of stacked dates
-⎕←i←⍸p=(⊃+/t) ⍝ here is the index of max value
+⎕←t←y 1799 ⍝ 1799 monthly calendar
+⎕←s←⊃+/t  ⍝ add together the stack of dates
+⎕←p←⌈/,s   ⍝ this is the max value of stacked dates
+⎕←i←⍸p=s   ⍝ here is the index of max value
