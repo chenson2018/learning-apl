@@ -7,7 +7,7 @@ m←{c⍴((1⊃⍵)⍴0),(⍳2⊃⍵),(((×/c)-+/⍵)⍴0)}                     
 r←{m (z ⍵) ((1⊃⍵)⌷d)}                                                                   ⍝ create a month from (month year)
 y←{r¨((11 12),⍳10),¨⍵}                                                                  ⍝ create an entire year
 
-Example:
+⍝ Example:
 ⎕←t←y 1799    ⍝ 1799 monthly calendar
 ⎕←s←+/t       ⍝ add together the stack of dates
 ⎕←p←⌈/,⊃+/t   ⍝ this is the max value of stacked dates
