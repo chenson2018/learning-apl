@@ -1,10 +1,10 @@
 ⍝ This code generates a standard calendar (listed Sunday through Saturday with six rows)
 ⍝ Zeroes are placed where a calendar would have blank spots
-⍝ After this, I add together a stack of dates and find what the maximum sum/index
+⍝ After this, I add together a stack of dates and find the maximum sum/index
 ⍝ Also see: https://en.wikipedia.org/wiki/Determination_of_the_day_of_the_week#Disparate_variation
 
 c←6 7                                                                                   ⍝ dimensions of a calendar
-d←(10⍴5⍴31 30),(31 28)                                                                  ⍝ days/months starting with March 
+d←(10⍴5⍴31 30),(31 28)                                                                  ⍝ days per month starting with March 
 z←{Y←(2⊃⍵)-(1⊃⍵)>10⋄y←100|Y⋄c←(Y-100|Y)÷100⋄7|1+⌊((2.6×(1⊃⍵))-0.2)+y+⌊(y÷4)+⌊(c÷4)-2×c} ⍝ get padding at begining of month 
 m←{c⍴((1⊃⍵)⍴0),(⍳2⊃⍵),(((×/c)-+/⍵)⍴0)}                                                  ⍝ create a single month from (padding, n_days)
 r←{m (z ⍵) ((1⊃⍵)⌷d)}                                                                   ⍝ create a month from (month year)
