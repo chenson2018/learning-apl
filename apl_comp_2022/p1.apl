@@ -13,7 +13,7 @@ q2⍨'CATCGTAATGACGGCCT'
 ⍝ Question 4
 
 ⍝ Question 5
-q5←(⌽↑{(⍳⍵){'⎕'@(⍳⍺)⊢⍵⍴' '}¨⍵})
+q5←{⌽↑(⍳⍵){'⎕'@(⍳⍺)⊢⍵⍴' '}¨⍵}
 q5 10
 q5 0
 
