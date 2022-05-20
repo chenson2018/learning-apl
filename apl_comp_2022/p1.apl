@@ -1,4 +1,9 @@
 ⍝ Question 1
+q1←{+⌿(⊃⍴,⍵)4⍴⍵∘.='ACGT'}
+
+q1 'AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC'
+q1 ''
+q1 'G'
 
 ⍝ Question 2
 q2←{+/⍺≠⍵}
