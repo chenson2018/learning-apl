@@ -24,6 +24,13 @@ q5 0
 
 ⍝ Question 6
 
+q6←{n←0⌈¯1+2×⍵⋄m←(⍳n)⌊⌽⍳n⋄m∘.⌊m}
+
+q6 3
+q6 5
+q6 1
+q6 0
+
 ⍝ Question 7
 
 ⍝ Question 8
