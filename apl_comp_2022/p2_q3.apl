@@ -1,3 +1,5 @@
+⍝ Task 1
+
  parse_time←{
      ⍝ convert a timestamp for attendees to a UNIX timestamp  
      ⍝ ⍵: timestamp as string
@@ -74,8 +76,6 @@
      map
  }
 
-⍝ Task 1
-
 attendees←⊃⎕CSV 'data/Attendees.csv' '' ⍬ 1
 schedule ←⊃⎕CSV 'data/Schedule.csv'  '' ⍬ 1
 
@@ -83,3 +83,37 @@ map←attendees Attended schedule
 
 (⎕JSON ⊃⎕NGET 'data/sessionTotals.json' )≡+⌿map
 (⎕JSON ⊃⎕NGET 'data/attendeeTotals.json')≡+/map
+
+⍝ Task 2
+
+ ShowedUp←{
+     attendees←⍺
+     schedule←⍵
+
+     ⍝ find unique years in the schedule
+     years←∪⊃,/{⍎¨'\d+/\d+/(\d+)'⎕S'\1'⊢⍵}¨attendees[;4]
+
+     ⍝ help function for computing a single row
+     ⍝ ⍵: year
+     helper←{
+         year←⍵
+
+         ⍝ filter attendees by year and map attendance
+         year_mat←attendees[⍸⊃,/{year=⍎¨'\d+/\d+/(\d+)'⎕S'\1'⊢⍵}¨attendees[;4];]
+         map←year_mat Attended schedule
+
+         ⍝ further filter by day
+         days←∪year_mat[;4]
+         mid←↑{day←⍵ ⋄ m←attendees[⍸{day≡⍵}¨attendees[;4];]Attended schedule ⋄ +/(+/m)>0}¨days
+
+         ⍝ attendance equal to 0 over both days
+         no_attend←+/0=+/map
+
+         ⊃,/(year(⊃⍴map)(,mid)no_attend)
+     }
+
+     ↑helper¨years
+ }
+
+ attendees ShowedUp schedule
+
