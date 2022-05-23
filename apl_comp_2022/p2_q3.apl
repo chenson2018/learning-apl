@@ -115,5 +115,24 @@ map←attendees Attended schedule
      ↑helper¨years
  }
 
- attendees ShowedUp schedule
+attendees ShowedUp schedule
+
+⍝ Task 3
+
+ Popular←{
+     ⍝ append column of attendees
+     merge←⍵,+⌿⍺
+
+     ⍝ filter out breaks and sort by attendees
+     non_break←merge[⍸~(≢'^\d+-break-\d+$'⎕S 3)¨merge[;1];]
+     non_break_sort←non_break[⍒non_break[;5];]
+
+     ⍝ group by unique years
+     ({⍎¨'(\d+)-.*'⎕S'\1'⊢⍵}¨non_break_sort[;1]){⊂⍵}⌸non_break_sort[;5 2]
+ }
+
+result←map Popular schedule
+⍴result
+⍴¨result
+⍪' '⍪¨(attendees Attended schedule) Popular schedule
 
