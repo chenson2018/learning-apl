@@ -54,15 +54,12 @@
  }
 
   Attended←{
-     attendees←⍺
-     schedule←⍵
-     
      ⍝ sort attendees alphabetically and append timestamp columns
-     attendees_alpha←attendees[⍋attendees[;1];]
+     attendees_alpha←⍺[⍋⍺[;1];]
      attendees_alpha_ts←attendees_alpha,,/(parse_time⊂)¨attendees_alpha[;2 3]
 
      ⍝ add timestamps to schedule
-     schedule_ts←schedule,,/(parse_time⊂)¨schedule[;3 4]
+     schedule_ts←⍵,,/(parse_time⊂)¨⍵[;3 4]
 
 
      ⍝ group by name
