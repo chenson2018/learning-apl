@@ -30,9 +30,9 @@
      votes←opt[?(⍵⍴⊃⍴opt);]
 
      ⍝ group by
-     ⌽{⍺(⍴⍵)}⌸votes
+     g←⌽{(⍺)(⍴⍵)}⌸votes
+     (⍉(1(⊃⍴g))⍴⊃,/g[;1]),g[;2]
  }
-
 
 ⎕←b←3 Ballot 150 ⍝ generate 150 voter rankings for 3 candidates
 ⎕←b2←¯3 Ballot 150
