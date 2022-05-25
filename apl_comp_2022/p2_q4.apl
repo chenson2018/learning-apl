@@ -71,7 +71,7 @@ min_nonzero←{{⍺=0:⍵⋄⍵=0:⍺⋄⍺⌊⍵}/⍵}
      (new_table(tally new_table))
  }
 
-  IRV←{
+ IRV←{
      ⍝ at max the winner/tie happens in as many iterations
      ⍝ as there are candidates, so apply that many times
      init←(⍵(tally ⍵))
@@ -82,6 +82,11 @@ min_nonzero←{{⍺=0:⍵⋄⍵=0:⍺⋄⍺⌊⍵}/⍵}
 
      just_tally←{⊃⌽⍵}¨res
      res←just_tally[⍸0≢¨just_tally]
-     res
+     (⊃⍴⊃res[⍴res])>1:res
+     (⊃⍴⊃res[⍴res])≤1:((,⊃⊃res[(⍴res)])@(⍴res))res
  }
 
+⎕←b3←300 200 100 50 50 100,⍪↓6 4⍴1 0 2 0 0 1 0 2 2 0 0 1 0 2 1 0 0 2 0 1 3 2 1 0
+IRV b3
+
+IRV ¯10 Ballot 200000
