@@ -42,7 +42,7 @@
 min_nonzero←{{⍺=0:⍵⋄⍵=0:⍺⋄⍺⌊⍵}/⍵}
 
  tally←{
-     ⍝ ⍵: ballot     
+     ⍝ ⍵: ballot
      ⍝ for each vector on the right, find the hightest
      ⍝ rank vote for a candidate that has not been eliminated
      highest_vote←min_nonzero¨⍵[;2]
@@ -54,16 +54,34 @@ min_nonzero←{{⍺=0:⍵⋄⍵=0:⍺⋄⍺⌊⍵}/⍵}
  iter←{
      ⍝ one iteration of IRV eliminate
      ⍝ ⍵: (ballot result (tally ballot result))
-
      table←⊃⍵
      places←⊃⌽⍵
+
+     ⍝ in the case of a tie, we exit with ⍬
+     ⍵≡⍬:⍬
+     {⊃(⍴⍵)=+/⍵=⍵[1]}places[;2]:⍬
+
 
      ⍝ find candidate with lowest votes (including ties)
      min←min_nonzero places[;2]
      elim←places[⍸min=places[;2];1]
 
-     ⍝ rewrite the table and re-tally          
+     ⍝ rewrite the table and re-tally
      new_table←↑table[;1]{(⍺ ⍵)}¨{(0@(elim))⍵}¨table[;2]
      (new_table(tally new_table))
+ }
+
+  IRV←{
+     ⍝ at max the winner/tie happens in as many iterations
+     ⍝ as there are candidates, so apply that many times
+     init←(⍵(tally ⍵))
+     n←⊃⍴⊃⍵[;2]
+
+     ⍝ this is abysmal running n! times, will fix later....
+     res←{(iter⍣⍵⊢)init}¨0,⍳n
+
+     just_tally←{⊃⌽⍵}¨res
+     res←just_tally[⍸0≢¨just_tally]
+     res
  }
 
