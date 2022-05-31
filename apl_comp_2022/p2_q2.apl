@@ -38,11 +38,8 @@ reshape←{dims←|⍺⋄base←dims⍴⍵⋄rev←⍸,⍺<0⋄base {⌽[⍵]⍺
          +/(1.5 2.5)=|type:⍺{⌈⍵÷⍺}⍵
      }
 
-     ⍝ want to make sure to still traspose a negative type
-     sign←{⍵<0:¯1 ⋄ ⍵>0:1}
-
      ⍝ this is the missing dimension to replace the type
-     missing←(sign type)×part_dim type_calc n
+     missing←(×type)×part_dim type_calc n
 
      ⍝ our full set of dims
      full_dim←(missing@(,⍸⍺≠⌊⍺))⍺
