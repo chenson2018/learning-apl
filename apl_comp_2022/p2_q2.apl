@@ -34,8 +34,8 @@ reshape←{dims←|⍺⋄base←dims⍴⍵⋄rev←⍸,⍺<0⋄base {⌽[⍵]⍺
      ⍝ find the (absolute value) of the missing dimension
 
      type_calc←{
-         0.5=|type:⍺{⌊⍵÷⍺}⍵
-         +/(1.5 2.5)=|type:⍺{⌈⍵÷⍺}⍵
+         0.5=|type:⌊⍵÷⍺
+         +/(1.5 2.5)=|type:⌈⍵÷⍺
      }
 
      ⍝ this is the missing dimension to replace the type
