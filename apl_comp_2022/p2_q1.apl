@@ -30,3 +30,13 @@
 
      ↑↑starts{,/⍺,(⍴⍵)⍴1+⍵-⍺}¨ends
  }
+
+subspaces 0 2 2 0 1 1 1 1 0 3
+
+⊢space←↑(⊢⍴⍨⊢,⊢)¨3 2 1
+subspaces space
+
+⍴subspaces 5 4 3 2⍴0
+
+⊢space←((3 3⍴5),(2 2⍴2)⍪1)⍪(2 2⍴4),2 3⍴3
+subspaces space
