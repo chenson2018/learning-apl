@@ -14,7 +14,42 @@
      ∨⌿↑⍺{(1@⍵)(⍺/0)}¨f ⍝ build a matrix and reduce cols with ∨
  }
 
- ⍝ Task 3
+
+⍝ Task 2
+
+ fill←{
+     mat←⍺⍴0
+     n_dims←1⌈⊃⍴⍺
+     dims←⍺
+
+     starts←↓⍵[;⍳n_dims]
+     sizes←↓⍵[;n_dims+⍳n_dims]
+
+     idx_range←{
+         ranges←⍺{(⍺-1)+⍳⍵}¨⍵
+         ,⊃(∘.,)/ranges
+     }
+
+     ⍝ all indicies regardless of exceeding shape
+     fills←starts idx_range¨sizes
+
+     ⍝ filter by shape
+     mask←{{0=+/⍵>dims}¨⍵}¨fills
+     fills←mask/¨fills
+
+     ⍝ fill shape template and combine
+     ⊃⌈/(⍳⊃⍴⍵){(⍺@⍵)mat}¨fills
+ }
+
+10 fill 1 2⍴3 4
+15 fill 2 2⍴3 6 5 7
+
+⊢spaces←5 4⍴∊2/¨(⍳5),¨(⌽¯1+2×⍳5)
+9 9 fill spaces
+
+4 4 4 fill 3 6⍴6/1 2 3
+
+⍝ Task 3
 
   subspaces←{
      ⍝ maximum value of subspaces
