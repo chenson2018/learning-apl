@@ -1,5 +1,5 @@
 ⍝ Question 1
-q1←{+⌿(,⍵)∘.='ACGT'}
+q1←{+/'ACGT'∘.=,⍵}
 
 ⍝ Question 2
 q2←{+/⍺≠⍵}
