@@ -3,6 +3,7 @@ q1←{+/'ACGT'∘.=,⍵}
 
 ⍝ Question 2
 q2←{+/⍺≠⍵}
+q2←(+/≠)
 
 ⍝ Question 3
 q3←{a←,⍺⋄w←,⍵⋄(a~w),w~a}
